@@ -16,6 +16,6 @@ public class GreetingServiceTest {
 
     @Test
     public void greet() {
-        assertEquals("Hello, ryuichi!", gs.greet("ryuichi"));
+        assertEquals("Hello, Ryuichi!", gs.greet("ryuichi"));
     }
 }
