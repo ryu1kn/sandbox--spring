@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
-    private final Foo foo;
+    private final Person person;
 
-    HelloController(Foo foo) {
-        this.foo = foo;
+    HelloController(Person person) {
+        this.person = person;
     }
 
     @RequestMapping("/")
@@ -17,9 +17,9 @@ public class HelloController {
         return "Greetings from Spring Boot!";
     }
 
-    @RequestMapping("/foo")
-    public String foo() {
-        return foo.getName();
+    @RequestMapping("/person")
+    public String person() {
+        return person.getName();
     }
 
 }
