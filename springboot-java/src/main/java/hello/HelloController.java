@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 
     private final Person person;
+    private final GreetingService greetingService;
 
-    HelloController(Person person) {
+    HelloController(Person person, GreetingService service) {
         this.person = person;
+        this.greetingService = service;
     }
 
     @RequestMapping("/")
@@ -19,7 +21,7 @@ public class HelloController {
 
     @RequestMapping("/person")
     public String person() {
-        return person.getName();
+        return greetingService.greet(person.getName());
     }
 
 }
