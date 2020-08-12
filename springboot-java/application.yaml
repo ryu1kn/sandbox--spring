@@ -1,2 +1,10 @@
 person:
   name: foo
+
+bar:
+- type: bar-a
+  rate: high
+- type: bar-b
+  rate: medium
+- type: bar-c
+  rate: low

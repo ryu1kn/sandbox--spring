@@ -1,5 +1,5 @@
 
-# Sandbox Spring Boot
+# Spring Boot with Java
 
 ## Run app
 
