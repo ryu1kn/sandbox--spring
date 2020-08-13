@@ -15,9 +15,7 @@ public class ManualAppContextGreetingServiceTest {
     static class LocalTestConfig {
         @Bean
         public GreetingService greetingService(NameFormatter formatter) {
-            GreetingService gs = new GreetingService();
-            gs.formatter = formatter;
-            return gs;
+            return new GreetingService(formatter);
         }
     }
 
