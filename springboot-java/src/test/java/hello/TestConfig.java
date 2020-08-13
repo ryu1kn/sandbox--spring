@@ -7,6 +7,6 @@ import org.springframework.context.annotation.Bean;
 public class TestConfig {
     @Bean
     NameFormatter formatter() {
-        return new NameFormatter();
+        return name -> "FORMAT[" + name + "]";
     }
 }
