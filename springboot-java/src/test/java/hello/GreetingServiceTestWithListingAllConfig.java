@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {TestConfig.class, GreetingServiceTestWithManualAppContext.LocalTestConfig.class})
+@ContextConfiguration(classes = {TestConfig.class, GreetingServiceTestWithListingAllConfig.LocalTestConfig.class})
 public class GreetingServiceTestWithListingAllConfig {
     static class LocalTestConfig {
         @Bean
