@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ContextConfiguration(classes = {TestConfig.class})
-public class GreetingServiceTest {
+public class GreetingServiceTestAsSpringBootTest {
     @Autowired
     GreetingService gs;
 
