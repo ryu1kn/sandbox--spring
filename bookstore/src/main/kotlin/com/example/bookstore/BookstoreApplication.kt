@@ -17,13 +17,16 @@ fun main(args: Array<String>) {
             HandlerFunction<ServerResponse> { ServerResponse.ok().body(fromObject("Hello World")) }
     )
 
-    val context = AnnotationConfigApplicationContext()
-    context.registerBean(WEB_HANDLER_BEAN_NAME, MyWebHandler::class.java, helloWorldRoute)
+    val context = AnnotationConfigApplicationContext().apply {
+        registerBean(WEB_HANDLER_BEAN_NAME, MyWebHandler::class.java, helloWorldRoute)
+        refresh()
+    }
 
-    context.refresh()
     val handler = applicationContext(context).build()
-    val adapter = UndertowHttpHandlerAdapter(handler)
-    val server = Undertow.builder().addHttpListener(8080, "0.0.0.0").setHandler(adapter).build()
+    val server = Undertow.builder()
+        .setHandler(UndertowHttpHandlerAdapter(handler))
+        .addHttpListener(8080, "0.0.0.0")
+        .build()
     server.start()
 }
 
