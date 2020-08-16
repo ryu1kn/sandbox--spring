@@ -1,13 +1,13 @@
 package com.example.bookstore
 
+import org.junit.Assert.assertEquals
 import org.junit.jupiter.api.Test
-import org.springframework.boot.test.context.SpringBootTest
 
-@SpringBootTest
 class BookstoreApplicationTests {
 
     @Test
-    fun contextLoads() {
+    fun `simple test`() {
+        assertEquals(1, 1)
     }
 
 }
