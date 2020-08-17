@@ -12,7 +12,7 @@ import java.util.function.Supplier
 fun main(args: Array<String>) {
     val context = GenericApplicationContext().apply {
         registerBean(WEB_HANDLER_BEAN_NAME, WebHandler::class.java, Supplier {
-            RouterFunctions.toWebHandler(Router.helloWorldRoute)
+            RouterFunctions.toWebHandler(Router.route)
         })
         refresh()
     }

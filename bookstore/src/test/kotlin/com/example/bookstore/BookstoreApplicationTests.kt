@@ -7,11 +7,12 @@ import org.springframework.test.web.reactive.server.expectBody
 class BookstoreApplicationTests {
 
     @Test
-    fun test() {
-        val testClient = WebTestClient.bindToRouterFunction(Router.helloWorldRoute).build()
-        testClient.get().uri("/hello-world")
+    fun `Retrieve all books`() {
+        val testClient = WebTestClient.bindToRouterFunction(Router.route).build()
+        testClient.get().uri("/books")
             .exchange()
             .expectStatus().isOk()
-            .expectBody<String>().isEqualTo("Hello World")
+            .expectBody<Map<String,List<String>>>()
+            .isEqualTo(mapOf("books" to listOf("Book A", "Book B")))
     }
 }
