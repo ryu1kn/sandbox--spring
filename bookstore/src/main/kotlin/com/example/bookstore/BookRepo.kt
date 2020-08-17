@@ -1,10 +1,14 @@
 package com.example.bookstore
 
-class BookRepo {
-    data class Book(val name: String)
+interface BookRepo {
+    fun list(): List<Book>
+}
 
-    fun list(): List<Book> = listOf(
+class RealBookRepo : BookRepo {
+    override fun list(): List<Book> = listOf(
         Book("Book A"),
         Book("Book B")
     )
 }
+
+data class Book(val name: String)

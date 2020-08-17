@@ -7,7 +7,9 @@ import org.springframework.test.web.reactive.server.expectBody
 typealias BookInfo = Map<String, String>
 
 class BookstoreApplicationTests {
-    private val bookRepo = BookRepo()
+    private val bookRepo = object : BookRepo {
+        override fun list() = listOf(Book("Book Z"))
+    }
     private val router = Router(bookRepo)
 
     @Test
@@ -18,8 +20,7 @@ class BookstoreApplicationTests {
             .expectStatus().isOk()
             .expectBody<Map<String,List<BookInfo>>>()
             .isEqualTo(mapOf("books" to listOf(
-                mapOf("name" to "Book A"),
-                mapOf("name" to "Book B")
+                mapOf("name" to "Book Z")
             )))
     }
 }
