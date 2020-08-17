@@ -10,7 +10,9 @@ import org.springframework.web.server.adapter.WebHttpHandlerBuilder.applicationC
 import java.util.function.Supplier
 
 fun main(args: Array<String>) {
-    val router = Router(RealBookRepo(), RealAuthorRepo())
+    val bookCatalog = BookCatalogService(RealBookRepo(), RealAuthorRepo())
+    val router = Router(bookCatalog)
+
     val context = GenericApplicationContext().apply {
         registerBean(WEB_HANDLER_BEAN_NAME, WebHandler::class.java, Supplier {
             RouterFunctions.toWebHandler(router.route)

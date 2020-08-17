@@ -8,12 +8,13 @@ typealias BookInfo = Map<String, String>
 
 class BookstoreApplicationTests {
     private val bookRepo = object : BookRepo {
-        override fun list() = listOf(Book("Book Z", "author-z"))
+        override fun list() = listOf(RawBook("Book Z", "author-z"))
     }
     private val authorRepo = object : AuthorRepo {
         override fun resolveName(id: String) = if (id == "author-z") "Author Z" else null
     }
-    private val router = Router(bookRepo, authorRepo)
+    private val bookCatalog = BookCatalogService(bookRepo, authorRepo)
+    private val router = Router(bookCatalog)
 
     @Test
     fun `Retrieve all books`() {

@@ -1,16 +1,16 @@
 package com.example.bookstore
 
 interface BookRepo {
-    fun list(): List<Book>
+    fun list(): List<RawBook>
 }
 
 class RealBookRepo : BookRepo {
     private val booksLoadedFromDB = listOf(
-        Book("Book A", "author-a"),
-        Book("Book B", "author-b")
+        RawBook("Book A", "author-a"),
+        RawBook("Book B", "author-b")
     )
 
-    override fun list(): List<Book> = booksLoadedFromDB
+    override fun list(): List<RawBook> = booksLoadedFromDB
 }
 
-data class Book(val name: String, val authorId: String)
+data class RawBook(val name: String, val authorId: String)
