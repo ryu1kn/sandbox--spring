@@ -1,7 +1,7 @@
 package com.example.bookstore
 
 import io.undertow.Undertow
-import org.springframework.context.annotation.AnnotationConfigApplicationContext
+import org.springframework.context.support.GenericApplicationContext
 import org.springframework.http.server.reactive.UndertowHttpHandlerAdapter
 import org.springframework.web.reactive.function.BodyInserters.fromObject
 import org.springframework.web.reactive.function.server.HandlerFunction
@@ -19,7 +19,7 @@ fun main(args: Array<String>) {
             HandlerFunction<ServerResponse> { ServerResponse.ok().body(fromObject("Hello World")) }
     )
 
-    val context = AnnotationConfigApplicationContext().apply {
+    val context = GenericApplicationContext().apply {
         registerBean(WEB_HANDLER_BEAN_NAME, WebHandler::class.java, Supplier { RouterFunctions.toWebHandler(helloWorldRoute) })
         refresh()
     }
