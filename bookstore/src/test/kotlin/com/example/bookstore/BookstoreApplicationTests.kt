@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test
 import org.springframework.test.web.reactive.server.WebTestClient
 import org.springframework.test.web.reactive.server.expectBody
 
+typealias BookInfo = Map<String, String>
+
 class BookstoreApplicationTests {
 
     @Test
@@ -12,7 +14,10 @@ class BookstoreApplicationTests {
         testClient.get().uri("/books")
             .exchange()
             .expectStatus().isOk()
-            .expectBody<Map<String,List<String>>>()
-            .isEqualTo(mapOf("books" to listOf("Book A", "Book B")))
+            .expectBody<Map<String,List<BookInfo>>>()
+            .isEqualTo(mapOf("books" to listOf(
+                mapOf("name" to "Book A"),
+                mapOf("name" to "Book B")
+            )))
     }
 }
