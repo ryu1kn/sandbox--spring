@@ -5,10 +5,12 @@ interface BookRepo {
 }
 
 class RealBookRepo : BookRepo {
-    override fun list(): List<Book> = listOf(
-        Book("Book A"),
-        Book("Book B")
+    private val booksLoadedFromDB = listOf(
+        Book("Book A", "author-a"),
+        Book("Book B", "author-b")
     )
+
+    override fun list(): List<Book> = booksLoadedFromDB
 }
 
-data class Book(val name: String)
+data class Book(val name: String, val authorId: String)

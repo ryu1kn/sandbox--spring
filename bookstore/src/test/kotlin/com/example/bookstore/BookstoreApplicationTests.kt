@@ -8,9 +8,12 @@ typealias BookInfo = Map<String, String>
 
 class BookstoreApplicationTests {
     private val bookRepo = object : BookRepo {
-        override fun list() = listOf(Book("Book Z"))
+        override fun list() = listOf(Book("Book Z", "author-z"))
     }
-    private val router = Router(bookRepo)
+    private val authorRepo = object : AuthorRepo {
+        override fun resolveName(id: String) = if (id == "author-z") "Author Z" else null
+    }
+    private val router = Router(bookRepo, authorRepo)
 
     @Test
     fun `Retrieve all books`() {
@@ -20,7 +23,7 @@ class BookstoreApplicationTests {
             .expectStatus().isOk()
             .expectBody<Map<String,List<BookInfo>>>()
             .isEqualTo(mapOf("books" to listOf(
-                mapOf("name" to "Book Z")
+                mapOf("name" to "Book Z", "author" to "Author Z")
             )))
     }
 }
