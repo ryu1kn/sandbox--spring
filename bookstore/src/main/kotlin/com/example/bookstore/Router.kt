@@ -5,9 +5,11 @@ import org.springframework.web.reactive.function.server.*
 import org.springframework.web.reactive.function.server.RequestPredicates.GET
 
 object Router {
+    data class Book(val name: String)
+
     private val books = listOf(
-        mapOf("name" to "Book A"),
-        mapOf("name" to "Book B")
+        Book("Book A"),
+        Book("Book B")
     )
 
     val route: RouterFunction<ServerResponse> = RouterFunctions.route(
