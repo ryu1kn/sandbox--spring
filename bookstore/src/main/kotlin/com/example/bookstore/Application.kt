@@ -1,13 +1,15 @@
 package com.example.bookstore
 
 import io.undertow.Undertow
+import org.springframework.context.support.ClassPathXmlApplicationContext
 import org.springframework.http.server.reactive.UndertowHttpHandlerAdapter
-import org.springframework.web.reactive.function.server.RouterFunctions.toHttpHandler
+import org.springframework.web.server.adapter.WebHttpHandlerBuilder.applicationContext
 
 fun main() {
-    val bookCatalog = BookCatalogService(RealBookRepo(), RealAuthorRepo())
-    val handler = toHttpHandler(Router(bookCatalog).route)
+    val context = ClassPathXmlApplicationContext("beans.xml")
+
     undertowServer {
+        val handler = applicationContext(context).build()
         setHandler(UndertowHttpHandlerAdapter(handler))
         addHttpListener(8080, "0.0.0.0")
     }.start()

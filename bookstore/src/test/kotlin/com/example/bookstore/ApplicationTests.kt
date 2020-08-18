@@ -1,16 +1,22 @@
 package com.example.bookstore
 
 import org.junit.jupiter.api.Test
+import org.springframework.context.support.ClassPathXmlApplicationContext
 import org.springframework.test.web.reactive.server.WebTestClient
 import org.springframework.test.web.reactive.server.expectBody
 
 typealias BookInfo = Map<String, String>
 
 class ApplicationTests {
-    private val bookRepo = BookRepo { listOf(RawBook("Book Z", "author-z")) }
-    private val authorRepo = AuthorRepo { id -> if (id == "author-z") "Author Z" else null }
-    private val bookCatalog = BookCatalogService(bookRepo, authorRepo)
-    private val router = Router(bookCatalog)
+    class MockBookRepo : BookRepo {
+        override fun list() = listOf(RawBook("Book Z", "author-z"))
+    }
+
+    class MockAuthorRepo : AuthorRepo {
+        override fun resolveName(id: String) = if (id == "author-z") "Author Z" else null
+    }
+
+    private val router = ClassPathXmlApplicationContext("beans.xml", "beans-test.xml").getBean(Router::class.java)
 
     @Test
     fun `Retrieve all books`() {
