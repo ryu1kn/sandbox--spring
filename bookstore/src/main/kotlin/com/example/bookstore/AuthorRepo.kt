@@ -1,6 +1,6 @@
 package com.example.bookstore
 
-interface AuthorRepo {
+fun interface AuthorRepo {
     fun resolveName(id: String): String?
 }
 

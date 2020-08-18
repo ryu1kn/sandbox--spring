@@ -1,6 +1,6 @@
 package com.example.bookstore
 
-interface BookRepo {
+fun interface BookRepo {
     fun list(): List<RawBook>
 }
 
