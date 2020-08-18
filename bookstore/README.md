@@ -8,7 +8,7 @@
 ```
 
 ```sh
-curl -i localhost:8080/hello-world
+curl -i localhost:8080/books
 ```
 
 ## References

@@ -6,7 +6,7 @@ import org.springframework.test.web.reactive.server.expectBody
 
 typealias BookInfo = Map<String, String>
 
-class BookstoreApplicationTests {
+class ApplicationTests {
     private val bookRepo = BookRepo { listOf(RawBook("Book Z", "author-z")) }
     private val authorRepo = AuthorRepo { id -> if (id == "author-z") "Author Z" else null }
     private val bookCatalog = BookCatalogService(bookRepo, authorRepo)
