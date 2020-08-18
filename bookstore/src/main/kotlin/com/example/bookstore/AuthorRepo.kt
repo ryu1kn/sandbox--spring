@@ -1,9 +1,12 @@
 package com.example.bookstore
 
+import org.springframework.stereotype.Component
+
 fun interface AuthorRepo {
     fun resolveName(id: String): String?
 }
 
+@Component
 class RealAuthorRepo : AuthorRepo {
     private val authorNamesFromTheNetwork = mapOf(
         "author-a" to "Author A",
